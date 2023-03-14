@@ -1,6 +1,6 @@
 # Cv Application made with React
 
-Live [Demo](https://stefanpython.github.io/cv-project/)
+## Live [Demo](https://stefanpython.github.io/cv-project/)
 
 ## Getting Started with Create React App
 
