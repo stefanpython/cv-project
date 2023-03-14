@@ -18,6 +18,7 @@ class General extends Component {
 
   handleChange(event) {
     const { name, value } = event.target;
+
     this.setState((prevState) => ({
       ...prevState,
       [name]: value,
@@ -27,6 +28,7 @@ class General extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
+
     this.setState((prevState) => ({
       ...prevState,
       complete: true,
@@ -36,12 +38,13 @@ class General extends Component {
   render() {
     if (this.state.complete !== false) {
       return (
-        <>
+        <div className="saved--info">
+          <hr />
           <p>{this.state.firstname}</p>
           <p>{this.state.lastname}</p>
           <p>{this.state.email}</p>
           <p>{this.state.number}</p>
-        </>
+        </div>
       );
     } else {
       return (
