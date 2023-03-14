@@ -39,24 +39,38 @@ class Practice extends Component {
   render() {
     if (this.state.complete !== false) {
       return (
-        <div className="saved--info">
+        <div className="saved--info practice--div">
           <hr />
-          <p>{this.state.companyname}</p>
-          <p>{this.state.positiontitle}</p>
-          <p>{this.state.tasks}</p>
-          <p>{this.state.startdate}</p>
-          <p>{this.state.enddate}</p>
+          <p>
+            <span>Company Name: </span>
+            {this.state.companyname}
+          </p>
+          <p>
+            <span>Position Title: </span>
+            {this.state.positiontitle}
+          </p>
+          <p>
+            <span>Tasks: </span>
+            {this.state.tasks}
+          </p>
+          <p>
+            <span>Starting Date: </span>
+            {this.state.startdate}
+          </p>
+          <p>
+            <span>Ending Date: </span>
+            {this.state.enddate}
+          </p>
         </div>
       );
     } else {
       return (
         <div>
           <hr />
-          <br />
 
           <div className="practice--container">
             <form onSubmit={this.handleSubmit}>
-              <label>Practice</label>
+              <label className="subtitle">Practice</label>
               <br />
               <br />
               <input

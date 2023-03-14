@@ -39,18 +39,29 @@ class General extends Component {
     if (this.state.complete !== false) {
       return (
         <div className="saved--info">
-          <hr />
-          <p>{this.state.firstname}</p>
-          <p>{this.state.lastname}</p>
-          <p>{this.state.email}</p>
-          <p>{this.state.number}</p>
+          <p>
+            <span>First Name: </span>
+            {this.state.firstname}
+          </p>
+          <p>
+            <span>Last Name: </span>
+            {this.state.lastname}
+          </p>
+          <p>
+            <span>Email: </span>
+            {this.state.email}
+          </p>
+          <p>
+            <span>Phone: </span>
+            {this.state.number}
+          </p>
         </div>
       );
     } else {
       return (
         <div className="general--container">
           <form onSubmit={this.handleSubmit}>
-            <label>General information</label>
+            <label className="subtitle">General information</label>
             <br />
             <br />
             <input

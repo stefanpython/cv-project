@@ -39,20 +39,32 @@ class Experience extends Component {
       return (
         <div className="saved--info">
           <hr />
-          <p>{this.state.schoolname}</p>
-          <p>{this.state.studytitle}</p>
-          <p>{this.state.startdate}</p>
-          <p>{this.state.enddate}</p>
+          <p>
+            <span>School Name: </span>
+            {this.state.schoolname}
+          </p>
+          <p>
+            <span>Title of study: </span>
+            {this.state.studytitle}
+          </p>
+          <p>
+            <span>Starting Date: </span>
+            {this.state.startdate}
+          </p>
+          <p>
+            <span>Ending Date: </span>
+            {this.state.enddate}
+          </p>
         </div>
       );
     } else {
       return (
         <div>
           <hr />
-          <br />
+
           <div className="experience--container">
             <form onSubmit={this.handleSubmit}>
-              <label>Experience</label>
+              <label className="subtitle">Experience</label>
               <br />
               <br />
               <input
