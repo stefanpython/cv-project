@@ -2,17 +2,31 @@ import "./App.css";
 import General from "./components/General";
 import Experience from "./components/Experience";
 import Practice from "./components/Practice";
+import { useReactToPrint } from "react-to-print";
+import { useRef } from "react";
 
 function App() {
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
+
   return (
     <div className="app--container">
-      <img src="print.png" alt="print icon" />
-      <h1 className="cv--title">Cv Application</h1>
-      <br />
+      <section ref={componentRef}>
+        <img
+          className="printPageButton"
+          onClick={handlePrint}
+          src="print.png"
+          alt="print icon"
+        />
+        <h1 className="cv--title">Cv Application</h1>
+        <br />
 
-      <General />
-      <Experience />
-      <Practice />
+        <General />
+        <Experience />
+        <Practice />
+      </section>
     </div>
   );
 }

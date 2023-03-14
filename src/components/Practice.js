@@ -92,7 +92,9 @@ class Practice extends Component {
                   />
                 </div>
 
-                <button type="submit">Save</button>
+                <button className="printPageButton" type="submit">
+                  Save
+                </button>
                 <br />
                 <br />
               </form>
@@ -127,7 +129,7 @@ class Practice extends Component {
             </p>
 
             <button
-              className="edit--btn"
+              className="edit--btn printPageButton"
               onClick={() => this.setState({ editMode: true })}
             >
               Edit
@@ -184,7 +186,9 @@ class Practice extends Component {
                 />
               </div>
 
-              <button type="submit">Save</button>
+              <button className="printPageButton" type="submit">
+                Save
+              </button>
               <br />
               <br />
             </form>

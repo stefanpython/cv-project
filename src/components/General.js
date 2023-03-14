@@ -74,7 +74,9 @@ class General extends Component {
                 value={this.state.number}
               />
 
-              <button type="submit">Save</button>
+              <button className="printPageButton" type="submit">
+                Save
+              </button>
               <br />
               <br />
             </form>
@@ -103,7 +105,7 @@ class General extends Component {
             </p>
 
             <button
-              className="edit--btn"
+              className="edit--btn printPageButton"
               onClick={() => this.setState({ editMode: true })}
             >
               Edit
@@ -143,7 +145,9 @@ class General extends Component {
               placeholder="Phone Number"
             />
 
-            <button type="submit">Save</button>
+            <button className="printPageButton" type="submit">
+              Save
+            </button>
             <br />
             <br />
           </form>
