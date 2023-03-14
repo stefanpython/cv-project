@@ -69,16 +69,37 @@ p {
 }
 
 .practice--div {
-  padding-bottom: 7em;
+  padding-bottom: 5em;
 }
 
-.cv--title,
 .subtitle {
   padding-top: 1.1em;
   font-family: "Domine", serif;
 }
+.cv--title {
+  padding-top: 0.6em;
+}
 
 span {
   font-family: "Trirong", serif;
-  font-weight: 600;
+}
+
+h3 {
+  font-weight: 400;
+}
+
+.edit--btn {
+  background-color: rgb(88, 223, 106);
+}
+
+img {
+  width: 60px;
+  display: inline-block;
+  margin-left: 42em;
+  margin-bottom: -5em;
+}
+
+img:hover {
+  transform: scale(1.2);
+  transition: 0.7s;
 }

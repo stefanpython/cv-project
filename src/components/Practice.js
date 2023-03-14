@@ -11,6 +11,7 @@ class Practice extends Component {
       startdate: "",
       enddate: "",
       complete: false,
+      editMode: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -24,8 +25,6 @@ class Practice extends Component {
       ...prevState,
       [name]: value,
     }));
-
-    console.log(this.state);
   }
 
   handleSubmit(event) {
@@ -33,36 +32,109 @@ class Practice extends Component {
     this.setState((prevState) => ({
       ...prevState,
       complete: true,
+      editMode: false,
     }));
   }
 
   render() {
-    if (this.state.complete !== false) {
-      return (
-        <div className="saved--info practice--div">
-          <hr />
-          <p>
-            <span>Company Name: </span>
-            {this.state.companyname}
-          </p>
-          <p>
-            <span>Position Title: </span>
-            {this.state.positiontitle}
-          </p>
-          <p>
-            <span>Tasks: </span>
-            {this.state.tasks}
-          </p>
-          <p>
-            <span>Starting Date: </span>
-            {this.state.startdate}
-          </p>
-          <p>
-            <span>Ending Date: </span>
-            {this.state.enddate}
-          </p>
-        </div>
-      );
+    if (this.state.complete) {
+      if (this.state.editMode) {
+        return (
+          <div>
+            <hr />
+
+            <div className="practice--container">
+              <form onSubmit={this.handleSubmit}>
+                <label className="subtitle">Practice</label>
+                <br />
+                <br />
+                <input
+                  onChange={this.handleChange}
+                  name="companyname"
+                  type="text"
+                  placeholder="Company Name"
+                  value={this.state.companyname}
+                />
+                <input
+                  onChange={this.handleChange}
+                  name="positiontitle"
+                  type="text"
+                  placeholder="Position Title"
+                  value={this.state.positiontitle}
+                />
+                <input
+                  onChange={this.handleChange}
+                  name="tasks"
+                  type="text"
+                  placeholder="Main tasks of your job"
+                  value={this.state.tasks}
+                />
+
+                <div className="start--date">
+                  <label>Start</label>
+                  <input
+                    onChange={this.handleChange}
+                    name="startdate"
+                    type="date"
+                    placeholder="Start"
+                    value={this.state.startdate}
+                  />
+                </div>
+
+                <div className="end--date">
+                  <label>End</label>
+                  <input
+                    onChange={this.handleChange}
+                    name="enddate"
+                    type="date"
+                    placeholder="End"
+                    value={this.state.enddate}
+                  />
+                </div>
+
+                <button type="submit">Save</button>
+                <br />
+                <br />
+              </form>
+            </div>
+          </div>
+        );
+      } else {
+        return (
+          <div className="saved--info practice--div">
+            <hr />
+            <h3>--Practice--</h3>
+            <br />
+            <p>
+              <span>Company Name: </span>
+              {this.state.companyname}
+            </p>
+            <p>
+              <span>Position Title: </span>
+              {this.state.positiontitle}
+            </p>
+            <p>
+              <span>Tasks: </span>
+              {this.state.tasks}
+            </p>
+            <p>
+              <span>Starting Date: </span>
+              {this.state.startdate}
+            </p>
+            <p>
+              <span>Ending Date: </span>
+              {this.state.enddate}
+            </p>
+
+            <button
+              className="edit--btn"
+              onClick={() => this.setState({ editMode: true })}
+            >
+              Edit
+            </button>
+          </div>
+        );
+      }
     } else {
       return (
         <div>
