@@ -1,148 +1,70 @@
-import React, { Component } from "react";
+import { useState } from "react";
 
-class General extends Component {
-  constructor(props) {
-    super(props);
+export default function General() {
+  const [data, setData] = useState({
+    firstname: "",
+    lastname: "",
+    email: "",
+    number: "",
+    complete: false,
+    editMode: false,
+  });
 
-    this.state = {
-      firstname: "",
-      lastname: "",
-      email: "",
-      number: "",
-      complete: false,
-      editMode: false,
-    };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleChange(event) {
+  const handleChange = (event) => {
     const { name, value } = event.target;
 
-    this.setState((prevState) => ({
+    setData((prevState) => ({
       ...prevState,
       [name]: value,
     }));
-  }
+    console.log(data);
+  };
 
-  handleSubmit(event) {
+  const handleSubmit = (event) => {
     event.preventDefault();
 
-    this.setState((prevState) => ({
+    setData((prevState) => ({
       ...prevState,
       complete: true,
       editMode: false,
     }));
-  }
+  };
 
-  render() {
-    if (this.state.complete) {
-      if (this.state.editMode) {
-        return (
-          <div className="general--container">
-            <form onSubmit={this.handleSubmit}>
-              <label className="subtitle">General information</label>
-              <br />
-              <br />
-              <input
-                onChange={this.handleChange}
-                name="firstname"
-                type="text"
-                placeholder="First Name"
-                value={this.state.firstname}
-              />
-              <input
-                onChange={this.handleChange}
-                name="lastname"
-                type="text"
-                placeholder="Last Name"
-                value={this.state.lastname}
-              />
-              <input
-                onChange={this.handleChange}
-                name="email"
-                type="email"
-                placeholder="Email"
-                value={this.state.email}
-              />
-              <input
-                onChange={this.handleChange}
-                name="number"
-                type="tel"
-                placeholder="Phone Number"
-                value={this.state.number}
-              />
-
-              <button className="printPageButton" type="submit">
-                Save
-              </button>
-              <br />
-              <br />
-            </form>
-          </div>
-        );
-      } else {
-        return (
-          <div className="saved--info">
-            <h3>--General Information--</h3>
-            <br />
-            <p>
-              <span>First Name: </span>
-              {this.state.firstname}
-            </p>
-            <p>
-              <span>Last Name: </span>
-              {this.state.lastname}
-            </p>
-            <p>
-              <span>Email: </span>
-              {this.state.email}
-            </p>
-            <p>
-              <span>Phone: </span>
-              {this.state.number}
-            </p>
-
-            <button
-              className="edit--btn printPageButton"
-              onClick={() => this.setState({ editMode: true })}
-            >
-              Edit
-            </button>
-          </div>
-        );
-      }
-    } else {
+  if (data.complete) {
+    if (data.editMode) {
       return (
         <div className="general--container">
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={handleSubmit}>
             <label className="subtitle">General information</label>
             <br />
             <br />
             <input
-              onChange={this.handleChange}
+              onChange={handleChange}
               name="firstname"
               type="text"
               placeholder="First Name"
+              value={data.firstname}
             />
             <input
-              onChange={this.handleChange}
+              onChange={handleChange}
               name="lastname"
               type="text"
               placeholder="Last Name"
+              value={data.lastname}
             />
             <input
-              onChange={this.handleChange}
+              onChange={handleChange}
               name="email"
               type="email"
               placeholder="Email"
+              value={data.email}
             />
             <input
-              onChange={this.handleChange}
+              onChange={handleChange}
               name="number"
               type="tel"
               placeholder="Phone Number"
+              value={data.number}
             />
 
             <button className="printPageButton" type="submit">
@@ -153,8 +75,81 @@ class General extends Component {
           </form>
         </div>
       );
+    } else {
+      return (
+        <div className="saved--info">
+          <h3>--General Information--</h3>
+          <br />
+          <p>
+            <span>First Name: </span>
+            {data.firstname}
+          </p>
+          <p>
+            <span>Last Name: </span>
+            {data.lastname}
+          </p>
+          <p>
+            <span>Email: </span>
+            {data.email}
+          </p>
+          <p>
+            <span>Phone: </span>
+            {data.number}
+          </p>
+
+          <button
+            className="edit--btn printPageButton"
+            onClick={() =>
+              setData((prevState) => ({
+                ...prevState,
+                editMode: true,
+              }))
+            }
+          >
+            Edit
+          </button>
+        </div>
+      );
     }
+  } else {
+    return (
+      <div className="general--container">
+        <form onSubmit={handleSubmit}>
+          <label className="subtitle">General information</label>
+          <br />
+          <br />
+          <input
+            onChange={handleChange}
+            name="firstname"
+            type="text"
+            placeholder="First Name"
+          />
+          <input
+            onChange={handleChange}
+            name="lastname"
+            type="text"
+            placeholder="Last Name"
+          />
+          <input
+            onChange={handleChange}
+            name="email"
+            type="email"
+            placeholder="Email"
+          />
+          <input
+            onChange={handleChange}
+            name="number"
+            type="tel"
+            placeholder="Phone Number"
+          />
+
+          <button className="printPageButton" type="submit">
+            Save
+          </button>
+          <br />
+          <br />
+        </form>
+      </div>
+    );
   }
 }
-
-export default General;

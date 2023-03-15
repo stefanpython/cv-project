@@ -1,188 +1,88 @@
-import React, { Component } from "react";
+import { useState } from "react";
 
-class Practice extends Component {
-  constructor() {
-    super();
+export default function Practice() {
+  const [data, setData] = useState({
+    companyname: "",
+    positiontitle: "",
+    tasks: "",
+    startdate: "",
+    enddate: "",
+    complete: false,
+    editMode: false,
+  });
 
-    this.state = {
-      companyname: "",
-      positiontitle: "",
-      tasks: "",
-      startdate: "",
-      enddate: "",
-      complete: false,
-      editMode: false,
-    };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleChange(event) {
+  const handleChange = (event) => {
     const { name, value } = event.target;
 
-    this.setState((prevState) => ({
+    setData((prevState) => ({
       ...prevState,
       [name]: value,
     }));
-  }
+    console.log(data);
+  };
 
-  handleSubmit(event) {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    this.setState((prevState) => ({
+
+    setData((prevState) => ({
       ...prevState,
       complete: true,
       editMode: false,
     }));
-  }
+  };
 
-  render() {
-    if (this.state.complete) {
-      if (this.state.editMode) {
-        return (
-          <div>
-            <hr />
-
-            <div className="practice--container">
-              <form onSubmit={this.handleSubmit}>
-                <label className="subtitle">Practice</label>
-                <br />
-                <br />
-                <input
-                  onChange={this.handleChange}
-                  name="companyname"
-                  type="text"
-                  placeholder="Company Name"
-                  value={this.state.companyname}
-                />
-                <input
-                  onChange={this.handleChange}
-                  name="positiontitle"
-                  type="text"
-                  placeholder="Position Title"
-                  value={this.state.positiontitle}
-                />
-                <input
-                  onChange={this.handleChange}
-                  name="tasks"
-                  type="text"
-                  placeholder="Main tasks of your job"
-                  value={this.state.tasks}
-                />
-
-                <div className="start--date">
-                  <label>Start</label>
-                  <input
-                    onChange={this.handleChange}
-                    name="startdate"
-                    type="date"
-                    placeholder="Start"
-                    value={this.state.startdate}
-                  />
-                </div>
-
-                <div className="end--date">
-                  <label>End</label>
-                  <input
-                    onChange={this.handleChange}
-                    name="enddate"
-                    type="date"
-                    placeholder="End"
-                    value={this.state.enddate}
-                  />
-                </div>
-
-                <button className="printPageButton" type="submit">
-                  Save
-                </button>
-                <br />
-                <br />
-              </form>
-            </div>
-          </div>
-        );
-      } else {
-        return (
-          <div className="saved--info practice--div">
-            <hr />
-            <h3>--Practice--</h3>
-            <br />
-            <p>
-              <span>Company Name: </span>
-              {this.state.companyname}
-            </p>
-            <p>
-              <span>Position Title: </span>
-              {this.state.positiontitle}
-            </p>
-            <p>
-              <span>Tasks: </span>
-              {this.state.tasks}
-            </p>
-            <p>
-              <span>Starting Date: </span>
-              {this.state.startdate}
-            </p>
-            <p>
-              <span>Ending Date: </span>
-              {this.state.enddate}
-            </p>
-
-            <button
-              className="edit--btn printPageButton"
-              onClick={() => this.setState({ editMode: true })}
-            >
-              Edit
-            </button>
-          </div>
-        );
-      }
-    } else {
+  if (data.complete) {
+    if (data.editMode) {
       return (
         <div>
           <hr />
 
           <div className="practice--container">
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={handleSubmit}>
               <label className="subtitle">Practice</label>
               <br />
               <br />
               <input
-                onChange={this.handleChange}
+                onChange={handleChange}
                 name="companyname"
                 type="text"
                 placeholder="Company Name"
+                value={data.companyname}
               />
               <input
-                onChange={this.handleChange}
+                onChange={handleChange}
                 name="positiontitle"
                 type="text"
                 placeholder="Position Title"
+                value={data.positiontitle}
               />
               <input
-                onChange={this.handleChange}
+                onChange={handleChange}
                 name="tasks"
                 type="text"
                 placeholder="Main tasks of your job"
+                value={data.tasks}
               />
 
               <div className="start--date">
                 <label>Start</label>
                 <input
-                  onChange={this.handleChange}
+                  onChange={handleChange}
                   name="startdate"
                   type="date"
                   placeholder="Start"
+                  value={data.startdate}
                 />
               </div>
 
               <div className="end--date">
                 <label>End</label>
                 <input
-                  onChange={this.handleChange}
+                  onChange={handleChange}
                   name="enddate"
                   type="date"
                   placeholder="End"
+                  value={data.enddate}
                 />
               </div>
 
@@ -195,8 +95,104 @@ class Practice extends Component {
           </div>
         </div>
       );
+    } else {
+      return (
+        <div className="saved--info practice--div">
+          <hr />
+          <h3>--Practice--</h3>
+          <br />
+          <p>
+            <span>Company Name: </span>
+            {data.companyname}
+          </p>
+          <p>
+            <span>Position Title: </span>
+            {data.positiontitle}
+          </p>
+          <p>
+            <span>Tasks: </span>
+            {data.tasks}
+          </p>
+          <p>
+            <span>Starting Date: </span>
+            {data.startdate}
+          </p>
+          <p>
+            <span>Ending Date: </span>
+            {data.enddate}
+          </p>
+
+          <button
+            className="edit--btn printPageButton"
+            onClick={() =>
+              setData((prevState) => ({
+                ...prevState,
+                editMode: true,
+              }))
+            }
+          >
+            Edit
+          </button>
+        </div>
+      );
     }
+  } else {
+    return (
+      <div>
+        <hr />
+
+        <div className="practice--container">
+          <form onSubmit={handleSubmit}>
+            <label className="subtitle">Practice</label>
+            <br />
+            <br />
+            <input
+              onChange={handleChange}
+              name="companyname"
+              type="text"
+              placeholder="Company Name"
+            />
+            <input
+              onChange={handleChange}
+              name="positiontitle"
+              type="text"
+              placeholder="Position Title"
+            />
+            <input
+              onChange={handleChange}
+              name="tasks"
+              type="text"
+              placeholder="Main tasks of your job"
+            />
+
+            <div className="start--date">
+              <label>Start</label>
+              <input
+                onChange={handleChange}
+                name="startdate"
+                type="date"
+                placeholder="Start"
+              />
+            </div>
+
+            <div className="end--date">
+              <label>End</label>
+              <input
+                onChange={handleChange}
+                name="enddate"
+                type="date"
+                placeholder="End"
+              />
+            </div>
+
+            <button className="printPageButton" type="submit">
+              Save
+            </button>
+            <br />
+            <br />
+          </form>
+        </div>
+      </div>
+    );
   }
 }
-
-export default Practice;
